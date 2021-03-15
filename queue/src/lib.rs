@@ -4,13 +4,14 @@
 #[cfg(test)]
 mod tests;
 
-pub struct Queue {
-    older: Vec<char>,   // 旧元素，最老的在最后
-    younger: Vec<char>, // 新元素，最新的在最后
+#[derive(Debug, Clone)]
+pub struct Queue<T> {
+    older: Vec<T>,   // 旧元素，最老的在最后
+    younger: Vec<T>, // 新元素，最新的在最后
 }
 
 
-impl Queue {
+impl<T> Queue<T> {
     pub fn new() -> Self {
         Self {
             older: Vec::new(),
@@ -19,13 +20,13 @@ impl Queue {
     }
 
     /// 把一个字符推导队列的后端
-    pub fn push(&mut self, c: char) {
+    pub fn push(&mut self, c: T) {
         self.younger.push(c);
     }
 
     /// 从队列前端取出一个字符，如果可以，取出字符返回Some(c),
     /// 否则，如果队列为空， 返回None
-    pub fn pop(&mut self) -> Option<char> {
+    pub fn pop(&mut self) -> Option<T> {
         if self.older.is_empty() {
             if self.younger.is_empty() {
                 return None;
@@ -44,7 +45,7 @@ impl Queue {
         self.older.is_empty() && self.younger.is_empty()
     }
 
-    pub fn split(self) -> (Vec<char>, Vec<char>) {
+    pub fn split(self) -> (Vec<T>, Vec<T>) {
         (self.older, self.younger)
     }
 }
