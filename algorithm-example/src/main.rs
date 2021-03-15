@@ -1,3 +1,11 @@
+
+use queue::Queue;
+
 fn main() {
-    println!("Hello, world!");
+    let mut q = Queue::new();
+    println!("q = {:?}", q);
+    q.push('q');
+    println!("q = {:?}", q);
+    let ret = q.pop();
+    println!("ret = {:?}", ret);
 }
