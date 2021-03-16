@@ -2,4 +2,5 @@
 members = [
     'queue',
     'algorithm-example',
+    'sort-algorithm',
 ]
